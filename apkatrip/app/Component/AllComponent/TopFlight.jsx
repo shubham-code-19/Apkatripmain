@@ -138,10 +138,10 @@ const TopFlight = () => {
             </div>
           </div>
 
-          <div className=" grid grid-cols-1 md:grid-cols-2   lg:grid-cols-3  xl:px-5 pb-5 justify-center ">
+          <div className=" grid grid-cols-1 md:grid-cols-2   lg:grid-cols-3  gap-8  xl:px-5 pb-5 justify-center ">
             {cityData.map((city, index) => (
               <div
-                className="bg-white border shadow-md my-5 lg:my-0  mx-auto lg:mx-2 rounded-xl overflow-hidden relative  w-[95%] xl:w-[400px]"
+                className="bg-white border shadow-md my-5 lg:my-0  mx-auto lg:mx-2 rounded-xl overflow-hidden relative  w-full"
                 key={index}
               >
                 <div className="city-head bg-[#0291d2] text-center">

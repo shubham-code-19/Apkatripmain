@@ -21,6 +21,7 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Hidden;
 use Illuminate\Support\Str;
 use App\Models\Blogcategory;
+
 class BlogResource extends Resource
 {
     protected static ?string $model = Blog::class;
@@ -32,43 +33,43 @@ class BlogResource extends Resource
         return $form
             ->schema([
                 Forms\Components\Section::make('Add Courses')
-                ->description('Add Content')
-                ->collapsible()
-                ->schema([
-                FileUpload::make('blog_image'),
-                // Select::make('blog_type')
-                // ->options([
-                //     "travel"=>"travel",
-                //     "business"=>"business",
-                //     "economics"=>"economics",
-                //     "vacation"=>"vacation"
-                // ]),
-                Select::make('blog_category_id')
-                ->label('Blog Category')
-                ->options(Blogcategory::all()->pluck('name', 'id')) 
-                ->required() 
-                ->searchable(), 
-                
-                TextInput::make('blog_title')->required()
-                ->afterStateUpdated(function (string $operation, $state, Forms\Set $set) {
-                    if ($operation === 'edit') {
-                        return;
-                    }
-                    $set('slug', Str::slug($state)); 
-                }),
-                Hidden::make('slug')
-                ->required()
-                ->unique(ignoreRecord: true),
-                TextInput::make('blog_text'),
-                TextInput::make('quotes'),
-                RichEditor::make('des1')->label('Description 1'),
-                RichEditor::make('des2')->label('Description 2'),
+                    ->description('Add Content')
+                    ->collapsible()
+                    ->schema([
+                        FileUpload::make('blog_image'),
+                        // Select::make('blog_type')
+                        // ->options([
+                        //     "travel"=>"travel",
+                        //     "business"=>"business",
+                        //     "economics"=>"economics",
+                        //     "vacation"=>"vacation"
+                        // ]),
+                        Select::make('blog_category_id')
+                            ->label('Blog Category')
+                            ->options(Blogcategory::all()->pluck('name', 'id'))
+                            ->required()
+                            ->searchable(),
+
+                        TextInput::make('blog_title')->required()
+                            ->afterStateUpdated(function (string $operation, $state, Forms\Set $set) {
+                                if ($operation === 'edit') {
+                                    return;
+                                }
+                                $set('slug', Str::slug($state));
+                            }),
+                        Hidden::make('slug')
+                            ->required()
+                            ->unique(ignoreRecord: true),
+                        TextInput::make('blog_text'),
+                        TextInput::make('quotes'),
+                        RichEditor::make('des1')->label('Description 1'),
+                        RichEditor::make('des2')->label('Description 2'),
 
 
 
 
-            
-            ])
+
+                    ])
 
             ]);
     }
@@ -79,16 +80,16 @@ class BlogResource extends Resource
             ->columns([
                 //
                 ImageColumn::make('blog_image'),
-               
+
                 TextColumn::make('blog_title'),
                 TextColumn::make('blog_text'),
                 TextColumn::make('quotes'),
                 TextColumn::make('des1')
-                ->limit(20) // Adjust this number based on average word length
-                ->label('Description 1'), // Optional: set a custom label
+                    ->limit(20) // Adjust this number based on average word length
+                    ->label('Description 1'), // Optional: set a custom label
                 TextColumn::make('des2')
-                ->limit(20) // Adjust this number based on average word length
-                ->label('Description 1'), // Optional: set a custom label
+                    ->limit(20) // Adjust this number based on average word length
+                    ->label('Description 1'), // Optional: set a custom label
 
             ])
             ->filters([
@@ -101,7 +102,7 @@ class BlogResource extends Resource
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
-            
+
             ]);
     }
 

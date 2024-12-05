@@ -1,20 +1,137 @@
 "use client";
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
 import Subscribe from "./AllComponent/Subscribe";
 import { useTranslations } from "next-intl";
 
 const Footer = () => {
-  const t=useTranslations("footer")
+  const t = useTranslations("footer");
+  const [activeTab, setActiveTab] = useState(1);
+  const tabsContent={
+  bestCheapFlight: [
+  { name: "Ryanair", link: "https://www.ryanair.com" },
+  { name: "easyJet", link: "https://www.easyjet.com" },
+  { name: "Southwest Airlines", link: "https://www.southwest.com" },
+  { name: "AirAsia", link: "https://www.airasia.com" },
+  { name: "JetBlue Airways", link: "https://www.jetblue.com" },
+  { name: "Spirit Airlines", link: "https://www.spirit.com" },
+  { name: "IndiGo", link: "https://www.goindigo.in" },
+  { name: "Wizz Air", link: "https://www.wizzair.com" },
+  { name: "Norwegian Air Shuttle", link: "https://www.norwegian.com" },
+  { name: "Frontier Airlines", link: "https://www.flyfrontier.com" },
+  { name: "Scoot", link: "https://www.flyscoot.com" },
+  { name: "Vueling", link: "https://www.vueling.com" },
+  { name: "Allegiant Air", link: "https://www.allegiantair.com" },
+  { name: "Tigerair", link: "https://www.tigerair.com" },
+  { name: "Peach Aviation", link: "https://www.flypeach.com" },
+  { name: "VivaAerobus", link: "https://www.vivaaerobus.com" },
+  { name: "Flynas", link: "https://www.flynas.com" },
+  { name: "Azul Brazilian Airlines", link: "https://www.voeazul.com.br" },
+  { name: "Cebu Pacific", link: "https://www.cebupacificair.com" },
+  { name: "Gol Linhas Aéreas", link: "https://www.voegol.com.br" },
+  { name: "Air Arabia", link: "https://www.airarabia.com" },
+  { name: "Jeju Air", link: "https://www.jejuair.net" },
+  { name: "Flydubai", link: "https://www.flydubai.com" },
+  { name: "Blue Air", link: "https://www.flyblueair.com" },
+  { name: "HK Express", link: "https://www.hkexpress.com" },
+  { name: "Sun Country Airlines", link: "https://www.suncountry.com" },
+  { name: "Transavia", link: "https://www.transavia.com" },
+  { name: "AirBaltic", link: "https://www.airbaltic.com" },
+  { name: "Eurowings", link: "https://www.eurowings.com" },
+  { name: "Volotea", link: "https://www.volotea.com" }
+],
+FavouriteAirlineAndAirports : [
+  { type: "Airline", name: "Ryanair", link: "https://www.ryanair.com" },
+  { type: "Airline", name: "easyJet", link: "https://www.easyjet.com" },
+  { type: "Airline", name: "Southwest Airlines", link: "https://www.southwest.com" },
+  { type: "Airline", name: "AirAsia", link: "https://www.airasia.com" },
+  { type: "Airline", name: "JetBlue Airways", link: "https://www.jetblue.com" },
+  { type: "Airline", name: "Spirit Airlines", link: "https://www.spirit.com" },
+  { type: "Airline", name: "IndiGo", link: "https://www.goindigo.in" },
+  { type: "Airline", name: "Wizz Air", link: "https://www.wizzair.com" },
+  { type: "Airline", name: "Norwegian Air Shuttle", link: "https://www.norwegian.com" },
+  { type: "Airline", name: "Frontier Airlines", link: "https://www.flyfrontier.com" },
+  { type: "Airport", name: "Heathrow Airport", link: "https://www.heathrow.com" },
+  { type: "Airport", name: "Changi Airport", link: "https://www.changiairport.com" },
+  { type: "Airport", name: "Los Angeles International Airport (LAX)", link: "https://www.flylax.com" },
+  { type: "Airport", name: "Dubai International Airport (DXB)", link: "https://www.dubaiairports.ae" },
+  { type: "Airport", name: "Tokyo Narita Airport", link: "https://www.narita-airport.jp" },
+  { type: "Airline", name: "Scoot", link: "https://www.flyscoot.com" },
+  { type: "Airline", name: "Vueling", link: "https://www.vueling.com" },
+  { type: "Airport", name: "Singapore Changi Airport", link: "https://www.changiairport.com" },
+  { type: "Airline", name: "Allegiant Air", link: "https://www.allegiantair.com" },
+  { type: "Airline", name: "Tigerair", link: "https://www.tigerair.com" },
+  { type: "Airport", name: "San Francisco International Airport (SFO)", link: "https://www.flysfo.com" },
+  { type: "Airline", name: "Peach Aviation", link: "https://www.flypeach.com" },
+  { type: "Airline", name: "VivaAerobus", link: "https://www.vivaaerobus.com" },
+  { type: "Airline", name: "Flynas", link: "https://www.flynas.com" },
+  { type: "Airport", name: "Sydney Kingsford Smith Airport", link: "https://www.sydneyairport.com.au" },
+  { type: "Airline", name: "Azul Brazilian Airlines", link: "https://www.voeazul.com.br" },
+  { type: "Airline", name: "Cebu Pacific", link: "https://www.cebupacificair.com" },
+  { type: "Airport", name: "Hartsfield-Jackson Atlanta International Airport", link: "https://www.atl.com" },
+  { type: "Airline", name: "Gol Linhas Aéreas", link: "https://www.voegol.com.br" },
+  { type: "Airport", name: "Frankfurt Airport", link: "https://www.frankfurt-airport.com" }
+]
+
+  }
   return (
     <>
       <Subscribe />
       <footer className="bg-white" aria-labelledby="footer-heading">
-        <h2 id="footer-heading" className="sr-only">
+        <h2 id="footer-heading text-[300px] bg-red-500" className="sr-only">
           Footer
         </h2>
-        <div className="mx-auto max-w-7xl px-6 pb-8 pt-16 sm:pt-24 lg:px-8 lg:pt-16">
-          <div className="xl:grid xl:grid-cols-3 xl:gap-8">
+
+        <div className="mx-auto max-w-7xl lg:py-10 px-6 pb-8 pt-16 sm:pt-24 lg:px-8 lg:pt-10">
+          <div className="Recomended TabChanges space-y-4">
+            <p class="text-sm font-semibold text-gray-700 lg:text-3xl ">
+              Recommended by <span class="text-blue-500">ApkaTrip.com</span>
+            </p>
+
+          <div className="tabSection">
+          <div class="flex items-center  gap-3 ">
+              <button
+                onClick={() => setActiveTab(1)}
+                class={`${
+                  activeTab == 1
+                    ? "bg-slate-700 text-white"
+                    : "bg-slate-100 hover:text-blue-500"
+                } py-2 px-4   text-sm font-medium text-gray-600 border-b-2 border-transparent  focus:outline-none rounded-sm`}
+              >
+                Best Cheap Flights
+              </button>
+              <button
+                onClick={() => setActiveTab(2)}
+                class={`${
+                  activeTab == 2
+                    ? "bg-slate-700 text-white"
+                    : "bg-slate-100 hover:text-blue-500"
+                }  py-2 px-4   text-sm font-medium  text-gray-600 border-b-2 border-transparent  focus:outline-none rounded-sm`}
+              >
+                Favourite Airline & Airports
+              </button>
+            </div>
+            {activeTab==1?  <ul className="tab-content px-3 text-xs grid grid-cols-4 gap-4  py-3 rounded-md shadow-lg">
+              {tabsContent.bestCheapFlight.map((elm,index)=>(
+                <li key={index}>
+                  <h5>{elm.name}</h5>
+                </li>
+              ))}
+            </ul>: <ul className="tab-content text-xs   grid grid-cols-4 gap-4  px-5 py-3 rounded-md shadow-lg">
+              {tabsContent.FavouriteAirlineAndAirports.map((item,index)=>(
+                <li key={index}>
+    <h3>{item.name} ({item.type})</h3>
+    {/* <a href={item.link} target="_blank" rel="noopener noreferrer">Visit</a> */}
+  </li>
+              ))}
+            </ul>}
+          
+           
+
+          </div>
+          </div>
+
+          <div className="my-10 xl:grid xl:grid-cols-3 xl:gap-8">
             <div className="space-y-4">
               <img
                 className=" block w-auto h-14 md:h-20"
@@ -109,7 +226,7 @@ const Footer = () => {
                         href="/listofhotels"
                         className="text-sm leading-6 text-gray-600 hover:text-gray-900"
                       >
-                       {t("listofhotels")}
+                        {t("listofhotels")}
                       </Link>
                     </li>
                     <li>
@@ -125,7 +242,7 @@ const Footer = () => {
                         href="/activities"
                         className="text-sm leading-6 text-gray-600 hover:text-gray-900"
                       >
-                       {t("activities")}
+                        {t("activities")}
                       </Link>
                     </li>
                     <li>
@@ -140,7 +257,7 @@ const Footer = () => {
                 </div>
                 <div className="mt-10 md:mt-0">
                   <h3 className="text-lg font-semibold leading-6 text-gray-900">
-                  Service
+                    Service
                   </h3>
                   <ul role="list" className="mt-6 space-y-4">
                     <li>
@@ -220,7 +337,7 @@ const Footer = () => {
                 </div>
                 <div className="mt-10 md:mt-0">
                   <h3 className="text-lg font-semibold leading-6 text-gray-900">
-                    More Services 
+                    More Services
                   </h3>
                   <ul role="list" className="mt-6 space-y-4">
                     <li>
@@ -236,7 +353,7 @@ const Footer = () => {
                         href="/ATI/atidesk"
                         className="text-sm leading-6 text-gray-600 hover:text-gray-900"
                       >
-                       Corporate Travel Desk
+                        Corporate Travel Desk
                       </Link>
                     </li>
                     <li>
@@ -252,7 +369,7 @@ const Footer = () => {
                         href="/ATI/atibharat"
                         className="text-sm leading-6 text-gray-600 hover:text-gray-900 text-nowrap"
                       >
-                        Explore World  
+                        Explore World
                       </Link>
                     </li>
                     <li>
@@ -260,7 +377,7 @@ const Footer = () => {
                         href="/ATI/loyalty-program"
                         className="text-sm leading-6 text-gray-600 hover:text-gray-900 text-nowrap"
                       >
-                         Loyalty Program 
+                        Loyalty Program
                       </Link>
                     </li>
                     <li>
@@ -268,7 +385,7 @@ const Footer = () => {
                         href="/ATI/membership-club"
                         className="text-sm leading-6 text-gray-600 hover:text-gray-900"
                       >
-                     Membership Club
+                        Membership Club
                       </Link>
                     </li>
                   </ul>
@@ -276,12 +393,11 @@ const Footer = () => {
               </div>
             </div>
           </div>
-          <div className=" ftnew  mt-16 border-t border-gray-900/10 hidden sm:block pt-4 sm:mt-20 lg:mt-10">
+
+          <div className=" ftnew h  mt-16 border-t border-gray-900/10 hidden sm:block pt-4 sm:mt-20 lg:mt-10">
             <div className="flex justify-between items-center">
               <div className="text-sm leading-6 text-gray-600 hover:text-gray-900 w-3/5">
-                <p>
-                 {t("text1")}
-                </p>
+                <p>{t("text1")}</p>
               </div>
 
               <div className=" ">
@@ -328,7 +444,8 @@ const Footer = () => {
               </div>
             </div>
           </div>
-          <div className="mt-16 flex justify-between border-t border-gray-900/10 pt-4 sm:mt-20 lg:mt-6 ">
+
+          <div className="belowFooter mt-16 flex justify-between border-t border-gray-900/10 pt-4 sm:mt-20 lg:mt-6 ">
             <p className="text-sm leading-5 text-gray-500">
               © 2024 Apka Trip All Rights Reserved.
             </p>

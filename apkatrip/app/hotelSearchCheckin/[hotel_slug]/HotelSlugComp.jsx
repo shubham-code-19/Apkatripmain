@@ -34,9 +34,15 @@ import {
 
   import { ImCancelCircle } from "react-icons/im";
 import { gethotelPreBookingApi } from '../../Component/Store/slices/hotelpreBookslice';
+import { useRouter } from 'next/navigation';
 
 
 const HotelSlugComp = ({slugs}) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [hotel,sethotel]=useState()
+
+
+const router = useRouter();
     const decodedSlug =  decodeURIComponent(slugs)
   const params = new URLSearchParams(decodedSlug); 
 
@@ -49,12 +55,15 @@ const HotelCode=params.get("hotelcode")
 
 const dispatch=useDispatch()
 const state=useSelector(state=>state.gethotelslice)
+const preBookinghotelState=useSelector(state=>state.preBookSlice)
+
+
 const [hotelinfo,sethotelinfo]=useState()
 const [isOpenSecond,setisopen]=useState(false)
 const [handelpricesection,sethandelpriceSection]=useState(false)
 const [description,setDescription]=useState(false);
 const [showingsection,setShowingsection]=useState("")
-
+const [viewmore,setViewmore]=useState(false)
 
 useEffect(()=>{
   dispatch(getSingleHotel({HotelCode,checkIn,checkOut,adults,children,roomes}))
@@ -66,11 +75,128 @@ useEffect(()=>{
 },[state])
 const handelprebooking=(BookingCode)=>{
 dispatch(gethotelPreBookingApi({BookingCode}))
+setIsOpen(true)
 }
+useEffect(()=>{
+// console.log(preBookinghotelState)
+sethotel(preBookinghotelState && preBookinghotelState.info  &&preBookinghotelState.info.HotelResult && preBookinghotelState.info.HotelResult[0])
 
-console.log(hotelinfo,"hotel")
+},[preBookinghotelState])
+
+
+const togglePopup = () => setIsOpen(!isOpen);
+
+
+
   return (
 <>
+{isOpen && hotel && (
+<div className='fixed top-0 left-0 w-screen   h-screen flex justify-center items-center bg-[#0000008a] z-50 overflow-y-scroll pt-16   '>
+
+     
+
+    
+       <div className="bg-white rounded-lg shadow-xl w-full  max-h-[80vh] overflow-y-auto  max-w-3xl mx-4 p-6 ">
+            <div className="flex justify-between items-center mb-4">
+              <h2 className="text-2xl font-bold text-gray-800">{hotel.Rooms[0].Name[0]}</h2>
+              <button onClick={togglePopup} className="text-red-500 font-bold text-xl">&times;</button>
+            </div>
+
+            <div className="space-y-4">
+              <div>
+                <h3 className="text-lg font-semibold">Room Information:</h3>
+                <p>{hotel.Rooms[0].Inclusion}</p>
+                <p className="font-semibold text-gray-700">
+                  Price per Night: ₹{hotel.Rooms[0].DayRates[0][0].BasePrice} INR
+                </p>
+              </div>
+
+              <div>
+                <h3 className="text-lg font-semibold">Total Fare:</h3>
+                <p>₹{hotel.Rooms[0].TotalFare}</p>
+                <p className="text-sm text-gray-600">Including taxes: ₹{hotel.Rooms[0].TotalTax}</p>
+              </div>
+
+              <div>
+                <h3 className="text-lg font-semibold">Cancellation Policy:</h3>
+                <ul className="list-disc pl-6 text-sm text-gray-700">
+                  {hotel.Rooms[0].CancelPolicies.map((policy, index) => (
+                    <li key={index}>
+                      <span className="font-semibold">{policy.FromDate}:</span> 
+                      {policy.CancellationCharge === 0 ? "Free cancellation" : `Charge: ₹${policy.CancellationCharge}`}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div>
+                <h3 className="text-lg font-semibold">Amenities:</h3>
+               {!viewmore &&  <ul className="grid grid-cols-3 gap-4 text-sm text-gray-700">
+                  {  hotel.Rooms[0].Amenities.slice(0,11).map((amenity, index) => (
+                    <li key={index} className="flex items-center">
+                      <span className="mr-2">✓</span>{amenity}
+                    </li>
+                  ))}
+                 {hotel.Rooms[0].Amenities.length>11 &&  <li className='text-blue-600 cursor-pointer flex items-center'  onClick={()=>setViewmore(true)}>View More</li>}
+                </ul>}
+                {viewmore &&  <ul className="grid grid-cols-3 gap-4 text-sm text-gray-700">
+                  {  hotel.Rooms[0].Amenities.map((amenity, index) => (
+                    <li key={index} className="flex items-center">
+                      <span className="mr-2">✓</span>{amenity}
+                    </li>
+                  ))}
+                   <li className='text-green-800 cursor-pointer flex items-center' onClick={()=>setViewmore(false)}>View less</li>
+                </ul>}
+                
+              </div>
+            </div>
+
+            <div className="mt-6">
+              <button
+                onClick={() => router.push('/hotelcheckout')}
+                className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-500 transition-all"
+              >
+                Book Now
+              </button>
+            </div>
+          </div> 
+        </div>
+      )}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <div className="lg:px-20 py-5">
         <ul
           className="flex space-x-2 text-sm text-gray-600 mt-5 mb-5"

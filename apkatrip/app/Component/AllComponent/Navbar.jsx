@@ -73,10 +73,10 @@ const Navbar = () => {
       link: "/holidayspackage",
     },
     {
-      name: t("cabs"),
+      name: t("Insurance"),
       className: "meuicowidth cabmenuico",
       class: "cab-icon",
-      link: "/cabs",
+      link: "/Insurance",
     },
     {
       name: t("activities"),

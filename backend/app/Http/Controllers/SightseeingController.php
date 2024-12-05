@@ -253,7 +253,22 @@ class SightseeingController extends Controller
 
     
     
-    
+    public function GetSingleActivity(Request $request)
+    {
+   $validatetion=$request->validate([
+    "ResultIndex"=>"required",
+    "TraceId"=>"required",
+    "EndUserIp"=>"required"
+   ]);
+   $token = $this->apiService->getToken();
+   $data['TokenId'] = $token; 
+
+   $response = Http::timeout(90)->post("https://SightseeingBE.tektravels.com/SightseeingService.svc/rest/GetAvailability",[
+    ""
+   ]);
+
+
+    }
 
 
     

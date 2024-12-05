@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Http; 
+use Illuminate\Support\Facades\Http;
 use App\Services\ApiService;
 
 class FlightController extends Controller
@@ -17,11 +17,11 @@ class FlightController extends Controller
 
     public function searchFlights(Request $request)
     {
-      
+
         $token = $this->apiService->getToken();
 
         $validatedData = $request->validate([
-            "EndUserIp"=>'required',
+            "EndUserIp" => 'required',
             'AdultCount' => 'required|integer',
             'Origin' => 'required|string',
             'Destination' => 'required|string',
@@ -35,66 +35,64 @@ class FlightController extends Controller
             'PreferredAirlines' => 'nullable|string',
 
         ]);
-        
+
         // Prepare the search payload with the validated data and token
         $searchPayload = [
-            "EndUserIp" => $validatedData['EndUserIp'], 
+            "EndUserIp" => $validatedData['EndUserIp'],
             "TokenId" => $token,
             "AdultCount" => $validatedData['AdultCount'],
             "ChildCount" => $validatedData['ChildCount'],
             "InfantCount" => $validatedData['InfantCount'],
             "DirectFlight" => $validatedData['DirectFlight'],
-                        "OneStopFlight" => $validatedData['OneStopFlight'],
-                        "JourneyType" => $validatedData['JourneyType'],
-                        "PreferredAirlines" => $validatedData['PreferredAirlines'],
+            "OneStopFlight" => $validatedData['OneStopFlight'],
+            "JourneyType" => $validatedData['JourneyType'],
+            "PreferredAirlines" => $validatedData['PreferredAirlines'],
             "Segments" => [
                 [
-                    "Origin" =>$validatedData['Origin'],
-                    "Destination" =>$validatedData['Destination'],
-                    "FlightCabinClass" =>$validatedData['FlightCabinClass'],     
-                    "PreferredDepartureTime" =>$validatedData['PreferredDepartureTime'],        
-                    "PreferredArrivalTime" =>$validatedData['PreferredDepartureTime']                    // "PreferredDepartureTime" =>$validatedData['PreferredDepartureTime'],
-                    // "PreferredArrivalTime" =>$validatedData['PreferredDepartureTime']
+                    "Origin" => $validatedData['Origin'],
+                    "Destination" => $validatedData['Destination'],
+                    "FlightCabinClass" => $validatedData['FlightCabinClass'],
+                    "PreferredDepartureTime" => $validatedData['PreferredDepartureTime'],
+                    "PreferredArrivalTime" => $validatedData['PreferredDepartureTime']
+                    
                 ]
             ],
             "Sources" => null
         ];
-    
-     
+
+
         $response = Http::timeout(100)->withHeaders([])->post('http://api.tektravels.com/BookingEngineService_Air/AirService.svc/rest/Search', $searchPayload);
 
-    
+
 
         if ($response->json('Response.Error.ErrorCode') === 6) {
-         
+
             $token = $this->apiService->authenticate();
-    
+
 
             $response = Http::timeout(90)->withHeaders([])->post('http://api.tektravels.com/BookingEngineService_Air/AirService.svc/rest/Search', $searchPayload);
-
         }
-    
-        //  Return the search response
-        return $response->json();
+
+        return     $response;
     }
 
 
 
 
 
-    public function searchreturnflight(Request $request){
+    public function searchreturnflight(Request $request)
+    {
 
         $token = $this->apiService->getToken();
 
         $validatedData = $request->validate([
-            "EndUserIp"=>'required',
+            "EndUserIp" => 'required',
             'AdultCount' => 'required|integer',
             'Origin' => 'required|string',
             'Destination' => 'required|string',
             'FlightCabinClass' => 'required|integer',
             'PreferredDepartureTime' => 'required',
             'PreferredDepartureTime2' => 'required',
-
             'ChildCount' => 'nullable|integer',
             'InfantCount' => 'nullable|integer',
             'DirectFlight' => 'nullable|boolean',
@@ -103,53 +101,52 @@ class FlightController extends Controller
             'PreferredAirlines' => 'nullable|string',
 
         ]);
-        
+
         // Prepare the search payload with the validated data and token
         $searchPayload = [
-            "EndUserIp" => $validatedData['EndUserIp'], 
+            "EndUserIp" => $validatedData['EndUserIp'],
             "TokenId" => $token,
             "AdultCount" => $validatedData['AdultCount'],
             "ChildCount" => $validatedData['ChildCount'],
             "InfantCount" => $validatedData['InfantCount'],
             "DirectFlight" => $validatedData['DirectFlight'],
-                        "OneStopFlight" => $validatedData['OneStopFlight'],
-                        "JourneyType" => $validatedData['JourneyType'],
-                        "PreferredAirlines" => $validatedData['PreferredAirlines'],
+            "OneStopFlight" => $validatedData['OneStopFlight'],
+            "JourneyType" => $validatedData['JourneyType'],
+            "PreferredAirlines" => $validatedData['PreferredAirlines'],
             "Segments" => [
                 [
-             "Origin" =>$validatedData['Origin'],
-                    "Destination" =>$validatedData['Destination'],
-                    "FlightCabinClass" =>$validatedData['FlightCabinClass'],     
-                    "PreferredDepartureTime" =>$validatedData['PreferredDepartureTime'],        
-                    "PreferredArrivalTime" =>$validatedData['PreferredDepartureTime']                 // "PreferredDepartureTime" =>$validatedData['PreferredDepartureTime'],
+                    "Origin" => $validatedData['Origin'],
+                    "Destination" => $validatedData['Destination'],
+                    "FlightCabinClass" => $validatedData['FlightCabinClass'],
+                    "PreferredDepartureTime" => $validatedData['PreferredDepartureTime'],
+                    "PreferredArrivalTime" => $validatedData['PreferredDepartureTime']                 // "PreferredDepartureTime" =>$validatedData['PreferredDepartureTime'],
                     // "PreferredArrivalTime" =>$validatedData['PreferredDepartureTime']
                 ],
-                [ 
-                    "Origin" =>$validatedData['Destination'],
-                    "Destination" =>$validatedData['Origin'],
-                "FlightCabinClass" =>$validatedData['FlightCabinClass'],     
-                "PreferredDepartureTime" =>$validatedData['PreferredDepartureTime2'],        
-                "PreferredArrivalTime" =>$validatedData['PreferredDepartureTime2']   
+                [
+                    "Origin" => $validatedData['Destination'],
+                    "Destination" => $validatedData['Origin'],
+                    "FlightCabinClass" => $validatedData['FlightCabinClass'],
+                    "PreferredDepartureTime" => $validatedData['PreferredDepartureTime2'],
+                    "PreferredArrivalTime" => $validatedData['PreferredDepartureTime2']
 
                 ]
             ],
             "Sources" => null
         ];
-    
-     
+
+
         $response = Http::timeout(100)->withHeaders([])->post('http://api.tektravels.com/BookingEngineService_Air/AirService.svc/rest/Search', $searchPayload);
 
-    
+
 
         if ($response->json('Response.Error.ErrorCode') === 6) {
-         
+
             $token = $this->apiService->authenticate();
-    
+
 
             $response = Http::timeout(90)->withHeaders([])->post('http://api.tektravels.com/BookingEngineService_Air/AirService.svc/rest/Search', $searchPayload);
-
         }
-    
+
         //  Return the search response
         return $response->json();
     }
@@ -160,32 +157,33 @@ class FlightController extends Controller
 
 
 
-    public function advance_search(Request $request){
+    public function advance_search(Request $request)
+    {
 
         $token = $this->apiService->getToken();
 
         $validatedData = $request->validate([
-            "EndUserIp"=>'required',
+            "EndUserIp" => 'required',
             'AdultCount' => 'required|integer',
             'ChildCount' => 'nullable|integer',
             'InfantCount' => 'nullable|integer',
-           "TraceId"=>"required",
-           "ResultIndex"=>"required",
-           "Source"=>"required",
-           "IsLCC"=>"required",
-           "IsRefundable"=>"required",
-         "AirlineRemark"=>"nullable",
-     "TripIndicator"=>"required",
-     "SegmentIndicator"=>"required",
-    "AirlineCode"=>"required",
-    "AirlineName"=>"required",
-  "FlightNumber"=>"required",
-"FareClass"=>"required",
-"OperatingCarrier"=>"nullable"
+            "TraceId" => "required",
+            "ResultIndex" => "required",
+            "Source" => "required",
+            "IsLCC" => "required",
+            "IsRefundable" => "required",
+            "AirlineRemark" => "nullable",
+            "TripIndicator" => "required",
+            "SegmentIndicator" => "required",
+            "AirlineCode" => "required",
+            "AirlineName" => "required",
+            "FlightNumber" => "required",
+            "FareClass" => "required",
+            "OperatingCarrier" => "nullable"
         ]);
-        
+
         // Prepare the search payload with the validated data and token
-        $searchPayload =[
+        $searchPayload = [
             'AdultCount' =>  $validatedData['AdultCount'],
             'ChildCount' =>  $validatedData['ChildCount'],
             'InfantCount' =>  $validatedData['InfantCount'],
@@ -217,58 +215,106 @@ class FlightController extends Controller
                 ],
             ],
         ];
-    
-     
+
+
         $response = Http::timeout(100)->withHeaders([])->post('http://api.tektravels.com/BookingEngineService_Air/AirService.svc/rest/PriceRBD', $searchPayload);
 
-    
+
 
         if ($response->json('Response.Error.ErrorCode') === 6) {
-         
+
             $token = $this->apiService->authenticate();
-    
+
 
             $response = Http::timeout(90)->withHeaders([])->post('http://api.tektravels.com/BookingEngineService_Air/AirService.svc/rest/PriceRBD', $searchPayload);
+        }
 
-        } 
-    
         //  Return the search response
         return $response->json();
     }
 
 
- function ssrrequest(Request $request ){
-    $token = $this->apiService->getToken();
+    function fareRules(Request  $request)
+    {
+        $token = $this->apiService->getToken();
 
-    
-    $validatedData = $request->validate([
-        "EndUserIp"=>'required',
-        "TraceId"=>"required",
-       "ResultIndex"=>"required",
-    ]);
+        $validatedData = $request->validate([
+            "EndUserIp" => "required",
+            "TraceId" => "required|string",
+            "ResultIndex" => "required|string"
 
-$searchpayload=[
-    "EndUserIp"=> $validatedData["EndUserIp"],
-    "TokenId"=>$token,
-    "TraceId"=> $validatedData["TraceId"],
-    "ResultIndex"=>$validatedData["ResultIndex"]
-];
+        ]);
+        $validatedData["TokenId"] = $token;
+        $response;
+        $response = Http::timeout(100)->withHeaders([])->post('http://api.tektravels.com/BookingEngineService_Air/AirService.svc/rest/FareRule', $validatedData);
+        if ($response->json('Response.Error.ErrorCode') === 6) {
 
-
-$response = Http::timeout(100)->withHeaders([])->post('http://api.tektravels.com/BookingEngineService_Air/AirService.svc/rest/SSR', $searchpayload);
-if ($response->json('Response.Error.ErrorCode') === 6) {
-         
-    $token = $this->apiService->authenticate();
+            $token = $this->apiService->authenticate();
 
 
-    $response = Http::timeout(100)->withHeaders([])->post('http://api.tektravels.com/BookingEngineService_Air/AirService.svc/rest/SSR', $searchpayload);
-  
-} 
-return $searchpayload;
-
- }
+            $response = Http::timeout(100)->withHeaders([])->post('http://api.tektravels.com/BookingEngineService_Air/AirService.svc/rest/FareRule', $validatedData);
+        }
+        return $response;
+    }
 
 
 
-   
+
+
+
+
+    function ssrrequest(Request $request)
+    {
+        $token = $this->apiService->getToken();
+
+
+        $validatedData = $request->validate([
+            "EndUserIp" => 'required',
+            "TraceId" => "required",
+            "ResultIndex" => "required",
+        ]);
+
+        $searchpayload = [
+            "EndUserIp" => $validatedData["EndUserIp"],
+            "TokenId" => $token,
+            "TraceId" => $validatedData["TraceId"],
+            "ResultIndex" => $validatedData["ResultIndex"]
+        ];
+
+
+        $response = Http::timeout(100)->withHeaders([])->post('http://api.tektravels.com/BookingEngineService_Air/AirService.svc/rest/SSR', $searchpayload);
+        if ($response->json('Response.Error.ErrorCode') === 6) {
+
+            $token = $this->apiService->authenticate();
+
+
+            $response = Http::timeout(100)->withHeaders([])->post('http://api.tektravels.com/BookingEngineService_Air/AirService.svc/rest/SSR', $searchpayload);
+        }
+        return $response;
+    }
+
+
+
+    function farequate(Request  $request)
+    {
+        $token = $this->apiService->getToken();
+
+        $validatedData = $request->validate([
+            "EndUserIp" => "required",
+            "TraceId" => "required|string",
+            "ResultIndex" => "required|string"
+
+        ]);
+        $validatedData["TokenId"] = $token;
+        $response;
+        $response = Http::timeout(100)->withHeaders([])->post('http://api.tektravels.com/BookingEngineService_Air/AirService.svc/rest/FareQuote', $validatedData);
+        if ($response->json('Response.Error.ErrorCode') === 6) {
+
+            $token = $this->apiService->authenticate();
+
+
+            $response = Http::timeout(100)->withHeaders([])->post('http://api.tektravels.com/BookingEngineService_Air/AirService.svc/rest/FareQuote', $validatedData);
+        }
+        return $response;
+    }
 }

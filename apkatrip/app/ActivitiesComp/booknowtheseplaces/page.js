@@ -1,12 +1,10 @@
-"use client";
+"use client"
 import React, { useState } from "react";
-import Image from "next/image";
-import Link from "next/link";
+
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { FaCalendar, FaClock, FaCopy, FaStar, FaTimes } from "react-icons/fa";
+import { FaCalendar, FaClock, FaCopy, FaStar } from "react-icons/fa";
 import { FaCheck, FaLocationDot } from "react-icons/fa6";
-import { IoMdInformationCircle } from "react-icons/io";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { RxCross2 } from "react-icons/rx";
 

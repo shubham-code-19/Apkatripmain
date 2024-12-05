@@ -9,7 +9,12 @@ import {getLocale, getMessages} from 'next-intl/server';
 import { development } from "./Component/common";
 import { redirect } from "next/navigation";
 import Maintenance from "./Component/AllComponent/Maintenance"
+
+import LayoutCompo from "./LayoutCompo"
+
+
 const inter = Inter({ subsets: ["latin"] });
+
 
 export const metadata = {
   title: "Apka Trip",
@@ -22,6 +27,8 @@ export default async function RootLayout({ children }) {
  
 
   const messages = await getMessages();
+
+  
 
 
 
@@ -37,13 +44,7 @@ export default async function RootLayout({ children }) {
      
      {development !="production"&& <NextIntlClientProvider messages={messages}>
         <Providerfile>
-        <Topbar />
-
-        <div className="block md:hidden">
-          <Navbar />
-        </div>
-        {children}
-        <Footer />
+       <LayoutCompo >{children}</LayoutCompo>
         </Providerfile>
       </NextIntlClientProvider>
 }

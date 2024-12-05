@@ -19,7 +19,7 @@ const page = () => {
     {
       trainName: "Vande Bharat Exp",
       trainNumber: "#22416",
-      departureDays: ["S", "M", "W", "T", "F", "S"], // Departs on these days
+      departureDays: ["S", "M", "W", "T", "F", "S"],
       departureTime: "3:00 PM, Fri",
       departureStation: "New Delhi (NDLS)",
       duration: "4 hrs 8 mins",

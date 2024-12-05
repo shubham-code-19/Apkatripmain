@@ -14,7 +14,7 @@ class TBOController extends Controller
     // Base URLs for the TBO APIs
     private $cityApiUrl = "http://api.tbotechnology.in/TBOHolidays_HotelAPI/CityList";
     private $hotelApiUrl = "http://api.tbotechnology.in/TBOHolidays_HotelAPI/TBOHotelCodeList";
-private $hoteldetalapi="https://affiliate.tektravels.com/HotelAPI/Search";
+    private $hoteldetalapi = "https://affiliate.tektravels.com/HotelAPI/Search";
     // Method to fetch cities
     public function fetchCities(Request $request)
     {
@@ -22,7 +22,7 @@ private $hoteldetalapi="https://affiliate.tektravels.com/HotelAPI/Search";
             'CountryCode' => 'required|string|max:2',
             'search' => 'nullable|string',
         ]);
-    
+
         try {
             // API Request
             $response = Http::withHeaders([
@@ -31,11 +31,11 @@ private $hoteldetalapi="https://affiliate.tektravels.com/HotelAPI/Search";
             ])->post($this->cityApiUrl, [
                 'CountryCode' => $request->CountryCode,
             ]);
-    
+
             // Check if the API request was successful
             if ($response->successful()) {
                 $cities = $response->json()['CityList'] ?? null;
-    
+
                 // Check if 'CityList' is available in the response
                 if (is_null($cities) || !is_array($cities)) {
                     return response()->json([
@@ -43,10 +43,10 @@ private $hoteldetalapi="https://affiliate.tektravels.com/HotelAPI/Search";
                         'message' => 'CityList not found in the API response',
                     ], 500); // Internal Server Error
                 }
-    
+
                 // Retrieve the 'search' parameter from the URL query string
                 $search = $request->query('search');
-    
+
                 // If search parameter is provided, filter the city list
                 if ($search) {
                     $search = strtolower($search);
@@ -55,7 +55,7 @@ private $hoteldetalapi="https://affiliate.tektravels.com/HotelAPI/Search";
                     });
                     return response()->json(array_values($filteredCities), 200);
                 }
-    
+
                 // If no search query is provided, return the first 20 cities
                 $defaultCities = array_slice($cities, 0, 20);
                 return response()->json($defaultCities, 200);
@@ -80,7 +80,7 @@ private $hoteldetalapi="https://affiliate.tektravels.com/HotelAPI/Search";
             ], 500); // Internal Server Error
         }
     }
-    
+
 
     // Method to fetch hotels
     public function fetchHotels(Request $request)
@@ -98,8 +98,8 @@ private $hoteldetalapi="https://affiliate.tektravels.com/HotelAPI/Search";
             'IsDetailedResponse' => true,
         ]);
 
-        
 
-   return response()->json($response->json(), $response->status());
+
+        return response()->json($response->json(), $response->status());
     }
 }

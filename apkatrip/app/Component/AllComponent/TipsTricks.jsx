@@ -2,7 +2,7 @@ import { useTranslations } from "next-intl";
 import Link from "next/link";
 
 // components/BlogSection.js
-const BlogSection = () => {
+const page = () => {
   const t=useTranslations("FreshTravel")
   return (
     <>
@@ -64,10 +64,11 @@ const BlogSection = () => {
               View All
             </Link>
           </div>
+
         </div>
       </section>
     </>
   );
 };
 
-export default BlogSection;
+export default page;

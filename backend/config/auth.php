@@ -40,6 +40,10 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        'hotels' => [
+            'driver' => 'session',
+            'provider' => 'hotels',
+        ],
     ],
 
     /*
@@ -63,6 +67,11 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => env('AUTH_MODEL', App\Models\User::class),
+        ],
+
+        'hotels' => [
+            'driver' => 'eloquent',
+            'model' => env('AUTH_MODEL', App\Models\Hotel::class),
         ],
 
         // 'users' => [

@@ -10,7 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllcityes } from "../Store/slices/citysearchSlice";
 
 
-const AutoSearch = ({ value, onSelect, }) => {
+const AutoSearch = ({ value, onSelect, visible}) => {
  
   const allcityes=useSelector((state)=>state.citysearch)
  const [inputValue,setinputvalue]=useState("")
@@ -24,7 +24,7 @@ const AutoSearch = ({ value, onSelect, }) => {
   ],
 }
 const [cities,setallcities]=useState(addCitdef)
-console.log('sfr',cities)
+
 const debounceTimeoutRef = useRef(null);
 
   const dispatch = useDispatch();
@@ -84,6 +84,7 @@ useEffect(()=>{dispatch(getAllcityes())},[])
       <div
         id="fromautoFill"
         className="text-black overflow-hidden h-72 overflow-y-auto"
+        onMouseLeave={()=>visible("")}
       >
         <div className="clr"></div>
         <div className="bg-[#ECF5FE] py-1 px-2 border-t border-[#ECECEC] text-sm font-semibold">
