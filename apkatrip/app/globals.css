@@ -8,6 +8,11 @@
   font-family: "Bebas Neue", sans-serif;
 
 }
+
+/* *{
+  border:2px solid red
+} */
+
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus {

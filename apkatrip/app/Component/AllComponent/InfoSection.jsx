@@ -6,7 +6,7 @@ const InfoSection = () => {
     <div className="px-5 md:px-28 lg:md:px-10 lg:px-52  pb-8 pt-0 lg:pt-8">
       <div className="block md:flex  gap-5">
         <div
-          className="w-full md:w-1/2 py-3 px-5 gap-5  h-[100px] flex items-start rounded-tl-[35px] rounded-md custom-bg"       
+          className="w-full md:w-1/2 py-3 px-5 gap-5  h-auto flex items-start rounded-tl-[35px] rounded-md custom-bg"       
         >
           <div className="mr-6 pt-4">
             <Image
@@ -32,7 +32,7 @@ const InfoSection = () => {
           </div>
         </div>
         <div
-          className="w-full md:w-1/2 py-3 px-5 gap-5  h-[100px] flex items-start rounded-tl-[35px] rounded-md custom-bg"
+          className="w-full md:w-1/2 py-3 px-5 gap-5  h-auto flex items-start rounded-tl-[35px] rounded-md custom-bg"
           
         >
           <div className="mr-6 pt-4">

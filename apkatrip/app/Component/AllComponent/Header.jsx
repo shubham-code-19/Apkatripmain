@@ -319,7 +319,7 @@ const t=useTranslations("Navbar2")
 
   return (
     <>
-      <div className="flex flex-col hidden lg:block custom-color text-white md:px-10 lg:px-52  py-10">
+      <div className="flex flex-col hidden lg:block custom-color text-white md:px-10 lg:px-52  py-10 ">
         <div>
           <div className="tabs flex gap-2 pb-2">
             <button

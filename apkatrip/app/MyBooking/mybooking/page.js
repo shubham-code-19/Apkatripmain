@@ -370,8 +370,8 @@ const page = () => {
 
   return (
     <>
-      <div className="w-full bg-gray-100 overflow-hidden mb-2 h-44 relative custom-color">
-        <div className="absolute top-5 right-10">
+      <div className="w-full bg-gray-100 overflow-hidden mb-2 h-96 md:h-64 lg:h-44 relative custom-color">
+        <div className="hidden md:block absolute  top-5 right-10">
           {tab === "flight" && (
             <img
               src="/Images/passenger.webp"
@@ -412,7 +412,7 @@ const page = () => {
           )}
         </div>
 
-        <div className="flex justify-start text-center bg-white w-max ml-20  absolute top-10 p-2 rounded-md gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 text-center bg-white w-max mx-20 md:mx-0 lg:ml-20  absolute my-12 md:my-0 md:top-10 p-2 rounded-md gap-4">
           <div
             className={`tabs cursor-pointer px-3 py-2 rounded-md ${
               tab === "flight" ? "bg-[#3286ed] text-white" : "bg-white"
@@ -473,9 +473,9 @@ const page = () => {
         </div>
       </div>
 
-      <div className="px-5 md:px-20  py-5 md:flex block gap-5 ">
+      <div className="px-5 lg:px-20  py-5 lg:flex  lg:gap-5 ">
         {tab === "flight" && (
-          <div className="w-full md:w-3/4">
+          <div className="w-full lg:w-3/4">
             <div className="block md:flex justify-between items-center  p-3 bg-white myshadow rounded-md">
               <div className="flex flex-col gap-2 md:flex-row ">
                 <div
@@ -583,7 +583,7 @@ const page = () => {
                   {flights.map((flight, index) => (
                     <div
                       key={index}
-                      className="card flex  w-full bg-white hover:bg-[#ECF5FE] myshadow rounded-md border gap-5 justify-center p-4"
+                      className="card flex  w-full bg-white hover:bg-[#ECF5FE] myshadow rounded-md border gap-5 justify-between p-4"
                     >
                       {" "}
                       <div className="">
@@ -668,7 +668,6 @@ const page = () => {
                   </div>
                 </div>
 
-                {/* Cancelled Tab */}
                 <div
                   className={`flex items-center gap-2 border rounded-md p-2  ${
                     flightTab === "Cancelled" ? "border-blue-600" : ""
@@ -691,7 +690,6 @@ const page = () => {
                   </div>
                 </div>
 
-                {/* Completed Tab */}
                 <div
                   className={`flex items-center gap-2 border rounded-md p-2  ${
                     flightTab === "Completed" ? "border-blue-600" : ""
@@ -919,7 +917,7 @@ const page = () => {
                   {hotels.map((hotel, index) => (
                     <div
                       key={index}
-                      className="card flex  w-full bg-white hover:bg-[#ECF5FE] myshadow rounded-md border gap-5 justify-center p-4"
+                      className="card flex  w-full bg-white hover:bg-[#ECF5FE] myshadow rounded-md border gap-5 justify-between lg:justify-center p-4"
                     >
                       {" "}
                       <div className="">
@@ -1002,7 +1000,6 @@ const page = () => {
                   </div>
                 </div>
 
-                {/* Cancelled Tab */}
                 <div
                   className={`flex items-center gap-2 border rounded-md p-2  ${
                     flightTab === "Cancelled" ? "border-blue-600" : ""
@@ -1025,7 +1022,6 @@ const page = () => {
                   </div>
                 </div>
 
-                {/* Completed Tab */}
                 <div
                   className={`flex items-center gap-2 border rounded-md p-2  ${
                     flightTab === "Completed" ? "border-blue-600" : ""
@@ -1048,7 +1044,6 @@ const page = () => {
                   </div>
                 </div>
 
-                {/* Pending Tab */}
                 <div
                   className={`flex items-center gap-2 border rounded-md p-2  ${
                     flightTab === "Pending" ? "border-blue-600" : ""
@@ -1071,7 +1066,6 @@ const page = () => {
                   </div>
                 </div>
 
-                {/* Search Box */}
               </div>
               <div className="relative">
                 <input
@@ -1090,7 +1084,7 @@ const page = () => {
                   {cabs.map((cab, index) => (
                     <div
                       key={index}
-                      className="card flex  w-full bg-white hover:bg-[#ECF5FE] myshadow rounded-md border gap-5 justify-center p-4"
+                      className="card flex  w-full bg-white hover:bg-[#ECF5FE] myshadow rounded-md border gap-5 justify-between p-4"
                     >
                       {" "}
                       <div className="">
@@ -1173,7 +1167,6 @@ const page = () => {
                   </div>
                 </div>
 
-                {/* Cancelled Tab */}
                 <div
                   className={`flex items-center gap-2 border rounded-md p-2  ${
                     flightTab === "Cancelled" ? "border-blue-600" : ""
@@ -1196,7 +1189,6 @@ const page = () => {
                   </div>
                 </div>
 
-                {/* Completed Tab */}
                 <div
                   className={`flex items-center gap-2 border rounded-md p-2  ${
                     flightTab === "Completed" ? "border-blue-600" : ""
@@ -1219,7 +1211,6 @@ const page = () => {
                   </div>
                 </div>
 
-                {/* Pending Tab */}
                 <div
                   className={`flex items-center gap-2 border rounded-md p-2  ${
                     flightTab === "Pending" ? "border-blue-600" : ""
@@ -1242,7 +1233,6 @@ const page = () => {
                   </div>
                 </div>
 
-                {/* Search Box */}
               </div>
               <div className="relative">
                 <input
@@ -1261,7 +1251,7 @@ const page = () => {
                   {buses.map((bus, index) => (
                     <div
                       key={index}
-                      className="card flex  w-full bg-white hover:bg-[#ECF5FE] myshadow rounded-md border gap-5 justify-center p-4"
+                      className="card flex  w-full bg-white hover:bg-[#ECF5FE] myshadow rounded-md border gap-5 justify-between p-4"
                     >
                       {" "}
                       <div className="">
@@ -1344,7 +1334,6 @@ const page = () => {
                   </div>
                 </div>
 
-                {/* Cancelled Tab */}
                 <div
                   className={`flex items-center gap-2 border rounded-md p-2  ${
                     flightTab === "Cancelled" ? "border-blue-600" : ""
@@ -1367,7 +1356,6 @@ const page = () => {
                   </div>
                 </div>
 
-                {/* Completed Tab */}
                 <div
                   className={`flex items-center gap-2 border rounded-md p-2  ${
                     flightTab === "Completed" ? "border-blue-600" : ""
@@ -1390,7 +1378,6 @@ const page = () => {
                   </div>
                 </div>
 
-                {/* Pending Tab */}
                 <div
                   className={`flex items-center gap-2 border rounded-md p-2  ${
                     flightTab === "Pending" ? "border-blue-600" : ""
@@ -1413,7 +1400,6 @@ const page = () => {
                   </div>
                 </div>
 
-                {/* Search Box */}
               </div>
               <div className="relative">
                 <input
@@ -1432,7 +1418,7 @@ const page = () => {
                   {hotelflights.map((hotelflight, index) => (
                     <div
                       key={index}
-                      className="card flex  w-full bg-white hover:bg-[#ECF5FE] myshadow rounded-md border gap-5 justify-center p-4"
+                      className="card flex  w-full bg-white hover:bg-[#ECF5FE] myshadow rounded-md border gap-5 justify-between p-4"
                     >
                       {" "}
                       <div className="">
@@ -1494,7 +1480,7 @@ const page = () => {
           </div>
         )}
 
-        <div className="w-full md:w-1/4 p-5 myshadow rounded-md">
+        <div className="w-full lg:w-1/4 p-5 myshadow rounded-md">
           <h1 className="text-base font-bold">Recent Booking</h1>
           <div className="mt-4">
             {confirmedFlights.length > 0 ? (

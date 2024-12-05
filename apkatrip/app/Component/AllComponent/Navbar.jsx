@@ -96,7 +96,7 @@ const Navbar = () => {
   return (
     <>
       {" "}
-      <div className=" mt-0 lg:mt-2 mb-5 block md:hidden">
+      <div className=" mt-0 lg:mt-2 mb-5 block md:hidden ">
         <Slider {...settings}>
           <div>
             <img
@@ -127,7 +127,7 @@ const Navbar = () => {
 
 
 
-      <nav className="bg-white  py-1 px-0 md:px-5    flex justify-between gap-2 transition-all duration-100 mb-3 md:mb-0">
+      <nav className="bg-white  py-1 px-0 md:px-5    flex justify-center lg:justify-between gap-2 transition-all duration-100 mb-3 md:mb-0">
         {isMobile ? (
           <>
             <div

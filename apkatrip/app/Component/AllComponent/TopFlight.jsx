@@ -128,7 +128,7 @@ const TopFlight = () => {
   return (
     <>
       <div>
-        <main className="flight pt-0 lg:pt-10 px-0 md:px-10  lg:px-40">
+        <main className="flight pt-0 lg:pt-10 px-4 md:px-10  lg:px-40">
           <div className="">
             <div className="relative ">
               <div className="relative text-lg md:text-xl lg:text-3xl font-bold text-gray-900 flex justify-center items-center gap-2  mb-5 lg:mb-6">
