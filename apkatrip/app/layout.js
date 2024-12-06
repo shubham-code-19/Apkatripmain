@@ -40,7 +40,7 @@ export default async function RootLayout({ children }) {
         <Topbar />
 
         <div className="block md:hidden">
-          <Navbar />
+          {/* <Navbar /> */}
         </div>
         {children}
         <Footer />

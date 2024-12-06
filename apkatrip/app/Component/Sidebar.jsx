@@ -1,7 +1,80 @@
+"use client"
+import { useState } from "react";
+
 import Link from "next/link";
 import { FaChevronRight, FaTimes } from "react-icons/fa";
 // Sidebar.js
+import { BsFillBuildingsFill } from "react-icons/bs";
+import { MdWorkHistory } from "react-icons/md";
+import { IoAirplane } from "react-icons/io5";
+
+
 const Sidebar = ({ isOpen, onClose }) => {
+ 
+  const  topFeaturestopDropDown= [
+      { 
+        heading: "List Your Property",
+        icon:<BsFillBuildingsFill />,
+        list: [
+          {
+            link: "",
+            listName: "Benefits of Booking Directly",
+          },
+          {
+            link: "",
+            listName: "Custom Travel Guidance with Experts",
+          },
+          {
+            link: "",
+            listName: "24-Hour Cancellation",
+          },
+        ],
+      },
+      {
+        heading: "Business Associates",
+        icon:<MdWorkHistory />,
+        list: [
+          {
+            link: "",
+            listName: "Benefits of Booking Directly",
+          },
+          {
+            link: "",
+            listName: "Custom Travel Guidance with Experts",
+          },
+          {
+            link: "",
+            listName: "24-Hour Cancellation",
+          },
+        ],
+      },
+      {
+        heading: "Corporate Travel Desc",
+        icon:<IoAirplane />,
+
+        list: [
+          {
+            link: "",
+            listName: "Benefits of Booking Directly",
+          },
+          {
+            link: "",
+            listName: "Custom Travel Guidance with Experts",
+          },
+          {
+            link: "",
+            listName: "24-Hour Cancellation",
+          },
+        ],
+      },
+    ]
+  
+  
+
+  const [topDropdown, setTopDropdown] = useState(null);
+  const dropFeatureHandler=(auth)=>{
+    setTopDropdown((preVal)=>preVal==auth?null:auth)
+  }
   return (
     <>
       <div
@@ -140,6 +213,41 @@ const Sidebar = ({ isOpen, onClose }) => {
             <FaChevronRight className="right-icon absolute" />
           </Link>
         </div>
+        <div  className="gap-4 h lg:hidden border-t border-gray-200 text-black px-3 md:px-0 bg-white mx-3 mt-2 rounded-lg">
+        <ul className="featuresListTopDropDown   w-full  shadow-lg flex flex-col  gap-3 md:px-3 rounded-b  ">
+            {topFeaturestopDropDown.map((item, index) => (
+              <li
+                key={index}
+                className="relative w-full  "
+                onClick={() => dropFeatureHandler(index)}
+              >
+                <button className="flex w-full justify-between py-2   font-bold text-sm text-nowrap hover:text-blue-500  gap-1 items-center gap-  cursor-pointer ">
+                  <span className="flex items-center gap-2">{item.icon}  {item.heading}</span>
+                  <FaChevronRight
+                    className={`text-lg  ${topDropdown === index ? "rotate-90" : ""}`}
+                  />
+                </button>
+
+                {topDropdown === index && (
+                  <ul
+                   
+                    className="absolute mt-1 left-0  bg-white shadow-lg rounded-lg w-60 z-40 py-2"
+                  >
+                    {item.list?.map((listItem, idx) => (
+                      <li
+                        key={idx}
+                        className="px-4 py-2 text-sm hover:bg-gray-100 hover:text-blue-500 cursor-pointer"
+                      >
+                        {listItem.listName}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </li>
+            ))}
+          </ul>
+        </div>
+
         <div className="gap-4 border bg-white mx-3 mt-2 px-3 rounded-lg">
           <Link
             href="/maintenance_mode"
@@ -173,6 +281,10 @@ const Sidebar = ({ isOpen, onClose }) => {
             <FaChevronRight className="right-icon absolute" />
           </Link>
         </div>
+
+
+      
+        
       </div>
     </>
   );

@@ -1,5 +1,6 @@
 "use client"
 import React from 'react'
+import OldHeader from "./Component/AllComponent/OldHeader"
 import Topbar from './Component/Topbar'
 import Header from './Component/AllComponent/Header'
 import TopFlight from './Component/AllComponent/TopFlight'
@@ -21,6 +22,7 @@ const page = () => {
     <>
      
       <Header />
+      {/* <OldHeader/> */}
       <CustomSlider/>
       <TopFlight />
       <Book />

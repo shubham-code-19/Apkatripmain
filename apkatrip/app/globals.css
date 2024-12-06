@@ -324,7 +324,7 @@ a.text-sm {
   margin-bottom: 0;
   cursor: pointer;
   font-size: 14px;
-  color: #fff;
+  color: #000;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -332,8 +332,11 @@ a.text-sm {
   line-height: 20px;
   width: 100%;
 }
+/* .newHeaderColor{
+  color: 000 !important;
+} */
 .azadimsale .container_df {
-  color: #000;
+  color: #000 !important;
 }
 .container_df input:checked ~ .checkmark_df:after {
   display: block;
@@ -489,7 +492,7 @@ input#a_FromSector_show:focus-visible {
 }
 .Cruise-icon{
   width: 40px;
-  height: 45px;
+  height: 30px;
   background: url(../public/Images/Bus-icon.svg);
   background-size: 40px 45px;
   margin: 0px auto;
@@ -511,7 +514,7 @@ input#a_FromSector_show:focus-visible {
   align-items: center;
   justify-content: center;
 }
-.Cruise-icon{
+/* .Cruise-icon{
   width: 40px;
   height: 45px;
   background: url(../public/Images/cruiseIcon.webp);
@@ -522,7 +525,7 @@ input#a_FromSector_show:focus-visible {
   background-position: center;
   align-items: center;
   justify-content: center;
-}
+} */
 .holiday-icon {
   width: 32px;
   height: 45px;
@@ -1160,23 +1163,36 @@ background-color: #d41145;
 
 }
 
-
-
-.cruiseMove {
-  animation: cruiseMoveAnime 3s ease-in-out forwards infinite;
+.topPhoneRingingAnime {
+  animation: topPhoneRingingAnimeShake 1s cubic-bezier(0.25, 1, 0.5, 1) infinite;
 }
 
-@keyframes cruiseMoveAnime {
+@keyframes topPhoneRingingAnimeShake {
   0% {
-    transform: translateX(0); /* Start position */
-    opacity: 1;
+    transform: rotate(0);
+  }
+  10% {
+    transform: rotate(-10deg) scale(1.1);
+  }
+  20% {
+    transform: rotate(10deg) scale(1.1);
+  }
+  30% {
+    transform: rotate(-10deg) scale(1.1);
+  }
+  40% {
+    transform: rotate(10deg) scale(1.1);
   }
   50% {
-    opacity: 0; /* Fades out */
-    transform: translateX(400px); /* Moves to the right */
+    transform: rotate(0) scale(1);
   }
   100% {
-    opacity: 0; /* Stays invisible */
-    transform: translateX(400px); /* Final position */
+    transform: rotate(0);
   }
 }
+
+
+
+/* *{
+  border: 2px solid black;
+} */

@@ -17,7 +17,7 @@ import { FaRupeeSign } from "react-icons/fa";
 const page = () => {
   const topDestination = [
     {
-      imgSrc: "/Images/cruiseNew.webp",
+      imgSrc: "/Images/cruiseImg/cruiseNew.webp",
       heading: "Mesmerizing Ocean Views",
       description:
         "Witness captivating horizons, golden sunsets, and stunning coastal landscapes that will leave you enchanted.",
@@ -26,7 +26,7 @@ const page = () => {
         price:40000
     },
     {
-      imgSrc: "/Images/cruise7.webp",
+      imgSrc: "/Images/cruiseImg/cruise7.webp",
       heading: "Ultimate Luxury on Board",
       description:
         "Pamper yourself with elegant accommodations, gourmet dining, and top-tier entertainment for an unforgettable voyage.",
@@ -35,7 +35,7 @@ const page = () => {
 
     },
     {
-      imgSrc: "/Images/cruise5.webp",
+      imgSrc: "/Images/cruiseImg/cruise5.webp",
       heading: "Discover Multiple Destinations",
       description:
         "Unpack once and explore iconic landmarks, vibrant cities, and hidden gems all in one seamless journey.",
@@ -44,7 +44,7 @@ const page = () => {
 
     },
     {
-      imgSrc: "/Images/cruise4.webp",
+      imgSrc: "/Images/cruiseImg/cruise4.webp",
       heading: "Fun for the Entire Family",
       description:
         "From kids' clubs to family excursions, our cruises offer activities that ensure a memorable experience for everyone.",
@@ -53,7 +53,7 @@ const page = () => {
 
     },
     {
-      imgSrc: "/Images/cruise5.webp",
+      imgSrc: "/Images/cruiseImg/cruise5.webp",
       heading: "Affordable Luxury Travel",
       description:
         "Experience the ultimate cruise getaway with value-packed deals and incredible offers designed for every budget.",
@@ -62,7 +62,7 @@ const page = () => {
 
     },
     {
-      imgSrc: "/Images/cruise6.webp",
+      imgSrc: "/Images/cruiseImg/cruise6.webp",
       heading: "Relax and Rejuvenate",
       description:
         "Recharge your mind and body with soothing spa treatments, peaceful ocean views, and serene onboard amenities.",
@@ -71,7 +71,7 @@ const page = () => {
 
     },
     {
-      imgSrc: "/Images/cruise7.webp",
+      imgSrc: "/Images/cruiseImg/cruise7.webp",
       heading: "Cultural Exploration Awaits",
       description:
         "Immerse yourself in diverse traditions and explore vibrant cultures through curated shore excursions.",
@@ -80,7 +80,7 @@ const page = () => {
 
     },
     {
-      imgSrc: "/Images/cruise8.webp",
+      imgSrc: "/Images/cruiseImg/cruise8.webp",
       heading: "Flexible Cruise Itineraries",
       description:
         "Plan your dream vacation with customizable schedules and itineraries that fit your preferences perfectly.",
@@ -92,14 +92,14 @@ const page = () => {
 
   const journeyItems = [
     {
-      bgPath: "/Images/cruise.webp",
+      bgPath: "/Images/cruiseImg/cruise1.webp",
       href: "/trainSearch",
       imgSrc: "/Images/america.webp",
       alt: "UK Cruise",
       title: "UK Cruise",
     },
     {
-      bgPath: "/Images/cruise6.webp",
+      bgPath: "/Images/cruiseImg/cruise6.webp",
 
       href: "/trainSearch",
       imgSrc: "/Images/1ny6u12000djzth5m52EE.webp",
@@ -107,7 +107,7 @@ const page = () => {
       title: "Europe Cruise",
     },
     {
-      bgPath: "/Images/cruise7.webp",
+      bgPath: "/Images/cruiseImg/cruise7.webp",
 
       href: "/Cruiseearch",
       imgSrc: "/Images/1ny7412000djztnftC466.webp",
@@ -115,7 +115,7 @@ const page = () => {
       title: "Italy Cruise",
     },
     {
-      bgPath: "/Images/cruise4.webp",
+      bgPath: "/Images/cruiseImg/cruise4.webp",
 
       href: "/Cruiseearch",
       imgSrc: "/Images/1ny1a12000djzrp2n9533.webp",
@@ -123,14 +123,14 @@ const page = () => {
       title: "Spain Cruise",
     },
     {
-      bgPath: "/Images/cruise5.webp",
+      bgPath: "/Images/cruiseImg/cruise5.webp",
       href: "/Cruiseearch",
       imgSrc: "/Images/1ny4r12000djzsdm4E7EC.webp",
       alt: "China Cruise",
       title: "China Cruise",
     },
     {
-      bgPath: "/Images/cruise6.webp",
+      bgPath: "/Images/cruiseImg/cruise6.webp",
       href: "/Cruiseearch",
       imgSrc: "/Images/1ny1j12000djzt1tu1655.webp",
       alt: "South Korea Cruise",
@@ -179,7 +179,7 @@ const page = () => {
 
   return (
     <div className="">
-      <div className="bg-[url(/Images/cruiseNew.webp)] min-h-[80vh] py-10 relative flex items-center bg-center bg-cover text-white  px-5 md:px-16 xl:px-32  ">
+      <div className="bg-[url(/Images/cruiseImg/cruiseNew.webp)] min-h-[80vh] py-10 relative flex items-center bg-center bg-cover text-white  px-5 md:px-16 xl:px-32  ">
         <div className="absolute inset-0 bg-gradient-to-r from-gray-900 to-transparent z-0"></div>
         <div className=" h-full   w-full flex flex-col gap-10 lg:flex-row lg:items-center lg:justify-between relative z-10">
           <div className=" lg:w-1/2 space-y-4 ">

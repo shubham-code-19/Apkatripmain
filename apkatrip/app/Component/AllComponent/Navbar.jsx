@@ -48,12 +48,12 @@ const Navbar = () => {
       class: "hotel-icon",
       link: "/hotels",
     },
-    {
-      name: t("flightHotel"),
-      className: "meuicowidth fphmenuico",
-      class: "fph-icon",
-      link: "/flight+hotels",
-    },
+    // {
+    //   name: t("flightHotel"),
+    //   className: "meuicowidth fphmenuico",
+    //   class: "fph-icon",
+    //   link: "/flight+hotels",
+    // },
     {
       name: t("trains"),
       className: "meuicowidth trainmenuico",
@@ -96,7 +96,7 @@ const Navbar = () => {
   return (
     <>
       {" "}
-      <div className=" mt-0 lg:mt-2 mb-5 block md:hidden">
+      {/* <div className=" mt-0  lg:mt-2 mb-5 block md:hidden">
         <Slider {...settings}>
           <div>
             <img
@@ -123,11 +123,11 @@ const Navbar = () => {
             />
           </div>
         </Slider>
-      </div>
+      </div> */}
 
 
 
-      <nav className="bg-white  py-1 px-0 md:px-5    flex justify-between gap-2 transition-all duration-100 mb-3 md:mb-0">
+      <nav className="  py-1 px-0 md:px-5    flex  justify-between gap-2 transition-all duration-100 mb-3 md:mb-0">
         {isMobile ? (
           <>
             <div
@@ -180,17 +180,17 @@ const Navbar = () => {
         ) : (
           <>
             <div
-              className={`container relative  custom-nav  flex  transition-all duration-100 items-center `}
+              className={`container relative py-0    xl:h-9  custom-nav  flex justify-center lg:justify-start gap-10 lg:gap-0  transition-all duration-100 items-center `}
             >
               {icons.map((item, index) => (
                 <Link
                   href={item.link}
                   key={index}
                   onClick={() => setActiveLink(item.link)}
-                  className={`block md:flex justify-center flex-wrap min-lg:flex-col lg:flex-row md:flex-col   items-center gap-1 py-2 px-0 text-center lg:px-3 rounded-md hover:bg-[#ECF5FE] hover:text-white transition-colors duration-300 ${
+                  className={`block md:flex justify-center xl:flex-wrap min-lg:flex-col lg:flex-row md:flex-col   items-center gap-1 py-2 px-0 text-center lg:px-3 rounded-md  hover:text-white transition-colors duration-300 ${
                     activeLink === item.link
-                      ? "bg-[#ECF5FE] text-white"
-                      : "hover:bg-[#ECF5FE] hover:text-white"
+                      ? ""
+                      : ""
                   }`}
                 >
                   {isMobile ? (
@@ -208,7 +208,11 @@ const Navbar = () => {
                       style={index === 0 ? { transform: "rotate(312deg)" } : {}}
                     />
                   )}
-                  <span className="text-black font-semibold text-sm">
+                  <span className={`${
+                    activeLink === item.link
+                      ? "text-blue-500"
+                      : "text-black hover:text-blue-600 "
+                  }  font-semibold text-sm`}>
                     {item.name}
                   </span>
                 </Link>
